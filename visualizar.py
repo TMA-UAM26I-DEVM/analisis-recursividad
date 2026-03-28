@@ -212,75 +212,42 @@ def busqueda_binaria_arbol(
 
     return resultado, nodo_actual, total_llamadas
 
-
 def ejecutar_fibonacci(n: int) -> None:
-    """
-    Ejecuta y muestra dos versiones de Fibonacci:
-    - recursiva simple
-    - recursiva con memoria dinámica
 
-    Args:
-        n: Valor que se utilizará en la demostración.
-
-    Returns:
-        None.
-    """
     print("=" * 70)
-    print("FIBONACCI SIN MEMORIA DINAMICA")
+    print("Llamadas sin memoria y con memoria")
     print("=" * 70)
 
-    resultado, raiz, total_llamadas = fibonacci_recursivo(n)
+    for i in range(0, 10):
 
-    print("\nArbol de llamadas:")
-    imprimir_arbol(raiz)
+        resultado, _, total_llamadas = fibonacci_recursivo(i)
+        _, _, total_llamadas_memo = fibonacci_recursivo_memoria(i)
 
-    print("\nResumen:")
-    print(f"Resultado: {resultado}")
-    print(f"Total de llamadas: {total_llamadas}")
-
-    print("\n" + "=" * 70)
-    print("FIBONACCI CON MEMORIA DINAMICA")
-    print("=" * 70)
-
-    resultado_memo, raiz_memo, total_llamadas_memo = fibonacci_recursivo_memoria(n)
-
-    print("\nArbol de llamadas:")
-    imprimir_arbol(raiz_memo)
-
-    print("\nResumen:")
-    print(f"Resultado: {resultado_memo}")
-    print(f"Total de llamadas: {total_llamadas_memo}")
-
+        print(f"\nFib({i}) = {resultado}")
+        print(f"Llamadas sin memoria: {total_llamadas}")
+        print(f"Llamadas con memoria: {total_llamadas_memo}")
 
 def ejecutar_busqueda(arreglo: list[int], objetivo: int) -> None:
-    """
-    Ejecuta la búsqueda binaria recursiva y muestra su árbol de llamadas.
 
-    Args:
-        arreglo: Lista ordenada en la que se realizará la búsqueda.
-        objetivo: Valor que se desea localizar.
-
-    Returns:
-        None.
-    """
     print("=" * 70)
     print("BUSQUEDA BINARIA")
     print("=" * 70)
 
-    resultado, raiz, total_llamadas = busqueda_binaria_arbol(
-        arreglo,
-        objetivo,
-        0,
-        len(arreglo) - 1
-    )
+    for i in range(0, 100 , 10):
 
-    print("\nArbol de llamadas:")
-    imprimir_arbol(raiz)
+        arreglo = list(range(1, i + 1))
 
-    print("\nResumen:")
-    print(f"Indice encontrado: {resultado}")
-    print(f"Total de llamadas: {total_llamadas}")
+        objetivo = -1
 
+        resultado, _, total_llamadas = busqueda_binaria_arbol(
+            arreglo,
+            objetivo,
+            0,
+            len(arreglo) - 1
+        )
+
+        print(f"\nTamaño del arreglo: {i}")
+        print(f"Llamadas realizadas: {total_llamadas}")
 
 if __name__ == "__main__":
     ejecutar_fibonacci(6)
